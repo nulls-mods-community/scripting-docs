@@ -11,7 +11,6 @@ function tick()
                     character:takeHeal(character.index, 4000, true, nil, unknownOrigin)
                     log(`Персонаж {character.data} убил {target.data} и получает хил в 4000 ХП!`)
                 end
-                target:takeDamage(character.index, 1, 0, character, nil, true, false, character.x, character.y, nil, false, unknownOrigin, false, false, false, 0)
             end
 
             local callbackImpl = createCallback("DamageEventListener", callback)
