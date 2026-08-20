@@ -145,7 +145,7 @@ character.takingDamageListeners:add(callbackImpl)
 | Тип | Файл(ы)                                       | Класс                                         |
 |-----|-----------------------------------------------|-----------------------------------------------|
 | 6   | projectiles_skin.csv, projectiles_logic.csv   | [ProjectileData](reference.md#projectiledata) |
-| 15  | locations.csv                                 |                                               |
+| 15  | locations.csv                                 | [LocationData](reference.md#locationdata)     |
 | 16  | characters.csv                                | [CharacterData](reference.md#characterdata)   |
 | 17  | area_effects_skin.csv, area_effects_logic.csv | [AreaEffectData](reference.md#areaeffectdata) |
 | 18  | items.csv                                     | [ItemData](reference.md#itemdata)             |
