@@ -142,15 +142,15 @@ character.takingDamageListeners:add(callbackImpl)
 
 ### Основные таблицы с игровыми данными
 
-| Тип | Файл             | Класс                               |
-|-----|------------------|-------------------------------------|
-| 6   | projectiles.csv  |                                     |
-| 15  | locations.csv    |                                     |
-| 16  | characters.csv   |                                     |
-| 17  | area_effects.csv |                                     |
-| 18  | items.csv        |                                     |
-| 20  | skills.csv       | [SkillData](reference.md#skilldata) |
-| 23  | cards.csv        |                                     |
-| 27  | tiles.csv        | [TileData](reference.md#tiledata)   |
+| Тип | Файл(ы)                                       | Класс                                         |
+|-----|-----------------------------------------------|-----------------------------------------------|
+| 6   | projectiles_skin.csv, projectiles_logic.csv   | [ProjectileData](reference.md#projectiledata) |
+| 15  | locations.csv                                 |                                               |
+| 16  | characters.csv                                | [CharacterData](reference.md#characterdata)   |
+| 17  | area_effects_skin.csv, area_effects_logic.csv | [AreaEffectData](reference.md#areaeffectdata) |
+| 18  | items.csv                                     | [ItemData](reference.md#itemdata)             |
+| 20  | skills.csv                                    | [SkillData](reference.md#skilldata)           |
+| 23  | cards.csv                                     |                                               |
+| 27  | tiles.csv                                     | [TileData](reference.md#tiledata)             |
 
 
