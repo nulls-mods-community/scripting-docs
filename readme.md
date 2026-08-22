@@ -152,5 +152,4 @@ character.takingDamageListeners:add(callbackImpl)
 | 20  | skills.csv                                    | [SkillData](reference.md#skilldata)           |
 | 23  | cards.csv                                     |                                               |
 | 27  | tiles.csv                                     | [TileData](reference.md#tiledata)             |
-
-
+| 29  | skins.csv                                     | [SkinData](reference.md#skindata)             |
