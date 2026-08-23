@@ -4,15 +4,16 @@
 
 ### Поля:
 
-| Название      | Тип                                                           | Предназначение                                                                                |
-|---------------|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| tick          | number <sup>(readonly)</sup>                                  | Текущий тик сервера. Монотонно увеличивается на 1 каждые 50 миллисекунд.                      |
-| playersCount  | number <sup>(readonly)</sup>                                  | Количество игроков в бою.                                                                     |
-| locationData  | [LocationData](#locationdata) <sup>(readonly)</sup>           | LocationData текущей локации. Может быть равен <b>nil</b>, если используется кастомная карта. |
-| gameMode      | [GameMode](#gamemode) <sup>(readonly)</sup>                   | Текущий игровой режим.                                                                        |
-| isBattleEnded | boolean <sup>(readonly)</sup>                                 | Будет равен <b>true</b>, если бой завершен.                                                   |
-| objectManager | [GameObjectManager](#gameobjectmanager) <sup>(readonly)</sup> | …                                                                                             |
-| map           | [TileMap](#tilemap) <sup>(readonly)</sup>                     | …                                                                                             |
+| Название          | Тип                                                           | Предназначение                                                                                |
+|-------------------|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| tick              | number <sup>(readonly)</sup>                                  | Текущий тик сервера. Монотонно увеличивается на 1 каждые 50 миллисекунд.                      |
+| playersCount      | number <sup>(readonly)</sup>                                  | Количество игроков в бою.                                                                     |
+| locationData      | [LocationData](#locationdata) <sup>(readonly)</sup>           | LocationData текущей локации. Может быть равен <b>nil</b>, если используется кастомная карта. |
+| gameMode          | [GameMode](#gamemode) <sup>(readonly)</sup>                   | Текущий игровой режим.                                                                        |
+| isBattleEnded     | boolean <sup>(readonly)</sup>                                 | Завершен ли бой?                                                                              |
+| hasPoisonDisabled | boolean                                                       | Выключен ли яд игрового режима?                                                               |
+| objectManager     | [GameObjectManager](#gameobjectmanager) <sup>(readonly)</sup> | …                                                                                             |
+| map               | [TileMap](#tilemap) <sup>(readonly)</sup>                     | …                                                                                             |
 
 ### Методы:
 
