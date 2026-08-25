@@ -1,7 +1,5 @@
-origins = enumAsTable("AttackOrigin")
-unknownOrigin = origins["UNKNOWN"]
-
-registered = 0
+local unknownOrigin = AttackOrigin.UNKNOWN
+local registered = 0
 
 function tick()
     for i, character in server.objectManager:getCharacters() do
