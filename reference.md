@@ -105,18 +105,19 @@ isAlive) обновляются только в конце игрового ци
 
 ### Поля:
 
-| Название               | Тип                           | Предназначение                                                                                                                                                                                   |
-|------------------------|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| hitPoints              | number <sup>(readonly)</sup>  | …                                                                                                                                                                                                |
-| maxHitPoints           | number <sup>(readonly)</sup>  | …                                                                                                                                                                                                |
-| isBot                  | boolean <sup>(readonly)</sup> | Равен <b>true</b> если персонаж управляется ботом.                                                                                                                                               |
-| persistentSpeedBuff    | number                        | …                                                                                                                                                                                                |
-| persistentReloadBuff   | number                        | …                                                                                                                                                                                                |
-| heroUpgradeLevel       | number                        | Уровень улучшения персонажа. Считается с нуля. Не все игровые механики используют это поле, поэтому вам также может понадобиться вызвать <b>setUpgradeLevel()</b> у конкретного [Skill](#skill). |
-| takingDamageListeners  | List <sup>(readonly)</sup>    | Список подписок на событие получения урона. Использует класс DamageEventListener.                                                                                                                |
-| dealingDamageListeners | List <sup>(readonly)</sup>    | Список подписок на событие нанесения урона. Использует класс DamageEventListener.                                                                                                                |
-| deathListeners         | List <sup>(readonly)</sup>    | Список подписок на событие смерти (когда здоровье опускается до нуля). Использует класс BasicEventListener.                                                                                      |
-| skillUseListeners      | List <sup>(readonly)</sup>    | Список подписок на событие использования атаки или супера. Использует класс SkillEventListener.                                                                                                  |
+| Название               | Тип                                                   | Предназначение                                                                                                                                                                                   |
+|------------------------|-------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| hitPoints              | number <sup>(readonly)</sup>                          | Текущее количество здоровья.                                                                                                                                                                     |
+| maxHitPoints           | number <sup>(readonly)</sup>                          | Максимальное количество здоровья.                                                                                                                                                                |
+| type                   | [CharacterType](#charactertype) <sup>(readonly)</sup> | Тип персонажа.                                                                                                                                                                                   |
+| isBot                  | boolean <sup>(readonly)</sup>                         | Равен <b>true</b> если персонаж управляется ботом.                                                                                                                                               |
+| persistentSpeedBuff    | number                                                | …                                                                                                                                                                                                |
+| persistentReloadBuff   | number                                                | …                                                                                                                                                                                                |
+| heroUpgradeLevel       | number                                                | Уровень улучшения персонажа. Считается с нуля. Не все игровые механики используют это поле, поэтому вам также может понадобиться вызвать <b>setUpgradeLevel()</b> у конкретного [Skill](#skill). |
+| takingDamageListeners  | List <sup>(readonly)</sup>                            | Список подписок на событие получения урона. Использует класс DamageEventListener.                                                                                                                |
+| dealingDamageListeners | List <sup>(readonly)</sup>                            | Список подписок на событие нанесения урона. Использует класс DamageEventListener.                                                                                                                |
+| deathListeners         | List <sup>(readonly)</sup>                            | Список подписок на событие смерти (когда здоровье опускается до нуля). Использует класс BasicEventListener.                                                                                      |
+| skillUseListeners      | List <sup>(readonly)</sup>                            | Список подписок на событие использования атаки или супера. Использует класс SkillEventListener.                                                                                                  |
 
 ### Методы:
 
@@ -252,6 +253,12 @@ isAlive) обновляются только в конце игрового ци
 | isDynamic | () ⇒ boolean | Возвращает <b>true</b>, если этот тайл был выставлен динамически. |
 
 # AttackOrigin
+
+Является перечислением.
+
+…
+
+# CharacterType
 
 Является перечислением.
 
