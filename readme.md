@@ -142,9 +142,11 @@ character.takingDamageListeners:add(callbackImpl)
 
 На данный момент поддерживаются следующие классы:
 
-| Название            | Тип                                                                                                                               | Применение                             |
-|---------------------|-----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|
-| DamageEventListener | (source: LogicCharacter,<br/>projectile: LogicProjectile, <br/>damage: number,<br/> data: Data,<br/> origin: AttackOrigin) ⇒ void | События получения или нанесения урона. |
+| Название            | Тип                                                                                                                               |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| DamageEventListener | (source: LogicCharacter,<br/>projectile: LogicProjectile, <br/>damage: number,<br/> data: Data,<br/> origin: AttackOrigin) ⇒ void |
+| SkillEventListener  | (skill: Skill) ⇒ void                                                                                                             |
+| BasicEventListener  | () ⇒ void                                                                                                                         |
 
 ## Безопасность
 
