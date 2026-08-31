@@ -178,14 +178,18 @@ character.takingDamageListeners:add(callbackImpl)
 
 ### Основные таблицы с игровыми данными
 
-| Тип | Файл(ы)                                       | Класс                                         |
-|-----|-----------------------------------------------|-----------------------------------------------|
-| 6   | projectiles_skin.csv, projectiles_logic.csv   | [ProjectileData](reference.md#projectiledata) |
-| 15  | locations.csv                                 | [LocationData](reference.md#locationdata)     |
-| 16  | characters.csv                                | [CharacterData](reference.md#characterdata)   |
-| 17  | area_effects_skin.csv, area_effects_logic.csv | [AreaEffectData](reference.md#areaeffectdata) |
-| 18  | items.csv                                     | [ItemData](reference.md#itemdata)             |
-| 20  | skills.csv                                    | [SkillData](reference.md#skilldata)           |
-| 23  | cards.csv                                     |                                               |
-| 27  | tiles.csv                                     | [TileData](reference.md#tiledata)             |
-| 29  | skins.csv                                     | [SkinData](reference.md#skindata)             |
+| Тип | Файл(ы)                                           | Класс                                             |
+|-----|---------------------------------------------------|---------------------------------------------------|
+| 6   | projectiles_skin.csv, projectiles_logic.csv       | [ProjectileData](reference.md#projectiledata)     |
+| 15  | locations.csv                                     | [LocationData](reference.md#locationdata)         |
+| 16  | characters.csv                                    | [CharacterData](reference.md#characterdata)       |
+| 17  | area_effects_skin.csv, area_effects_logic.csv     | [AreaEffectData](reference.md#areaeffectdata)     |
+| 18  | items.csv                                         | [ItemData](reference.md#itemdata)                 |
+| 20  | skills.csv                                        | [SkillData](reference.md#skilldata)               |
+| 23  | cards.csv                                         |                                                   |
+| 27  | tiles.csv                                         | [TileData](reference.md#tiledata)                 |
+| 29  | skins.csv                                         | [SkinData](reference.md#skindata)                 |
+| 52  | emotes.csv                                        |                                                   |
+| 68  | sprays.csv                                        |                                                   |
+| 108 | traits.csv                                        |                                                   |
+| 117 | status_effects_skin.csv, status_effects_logic.csv | [StatusEffectData](reference.md#statuseffectdata) |
