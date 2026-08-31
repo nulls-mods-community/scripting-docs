@@ -64,13 +64,14 @@ isAlive) обновляются только в конце игрового ци
 | isRespawning        | boolean <sup>(readonly)</sup> | Равен <b>true</b>, если игрок возрождается и вот-вот заспавнится.                                                 |
 | emoteUsedIndex      | number <sup>(readonly)</sup>  | …                                                                                                                 |
 | emoteUsedTick       | number <sup>(readonly)</sup>  | …                                                                                                                 |
+| isOverchargeActive  | boolean <sup>(readonly)</sup> | …                                                                                                                 |
 
 ### Методы:
 
 | Название      | Тип                        | Предназначение                                                                                                                                                                             |
 |---------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | getSkinData   | () ⇒ [SkinData](#skindata) | Возвращает текущий [SkinData](#skindata) для этого игрока.                                                                                                                                 |
-| getAttackTeam | () ⇒ number                | Возвращает эффективный номер команды игрока. Если игрок находится под контролем Виллоу, значение будет равно номеру команды этой Виллоу. В остальных случаях будет равно полю <b>team</b>. |
+| getAttackTeam | () ⇒ number                | Возвращает эффективный номер команды игрока. Если игрок находится под контролем Виллоу, значение будет равно номеру команды этой Виллоу. В остальных случаях будет равно полю <i>team</i>. |
 
 # LogicGameObject
 
@@ -91,13 +92,17 @@ isAlive) обновляются только в конце игрового ци
 
 ### Методы:
 
-| Название    | Тип                                      | Предназначение                                                                                                                               |
-|-------------|------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| setPosition | (x: number, y: number, z: number) ⇒ void | Задает координаты объекта. Важно: игровая логика может перезаписать ваши координаты, если объект находится в движении.                       |
-| isAlive     | () ⇒ boolean                             | Возвращает <b>false</b>, если объект был уничтожен или убит. В ином случае вернет <b>true</b>.                                               |
-| getType     | () ⇒ number                              | Позволяет узнать тип этого объекта: <b>0</b> = LogicCharacter, <b>1</b> = LogicProjectile, <b>2</b> = LogicAreaEffect, <b>3</b> = LogicItem. |
+| Название           | Тип                                      | Предназначение                                                                                                                               |
+|--------------------|------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| setPosition        | (x: number, y: number, z: number) ⇒ void | Задает координаты объекта. Важно: игровая логика может перезаписать ваши координаты, если объект находится в движении.                       |
+| isAlive            | () ⇒ boolean                             | Возвращает <b>false</b>, если объект был уничтожен или убит. В ином случае вернет <b>true</b>.                                               |
+| getType            | () ⇒ number                              | Позволяет узнать тип этого объекта: <b>0</b> = LogicCharacter, <b>1</b> = LogicProjectile, <b>2</b> = LogicAreaEffect, <b>3</b> = LogicItem. |
+| getSkinData        | () ⇒ [SkinData](#skindata)               | …                                                                                                                                            |
+| isOverchargeActive | () ⇒ boolean                             | …                                                                                                                                            |
+| setIndex           | (index: number, team: number) ⇒ void     | Позволяет задать игрока-владельца объекта. Рекомендуется вызывать только перед добавлением объекта в GameObjectManager.                      |
 
 # LogicCharacter
+
 Наследуется от [LogicGameObject](#logicgameobject).
 
 Персонаж. Имеет здоровье, может двигаться по заданному пути и атаковать. Самый обширный класс объектов.
@@ -115,8 +120,9 @@ isAlive) обновляются только в конце игрового ци
 | isStunned              | boolean <sup>(readonly)</sup>                           | Есть ли стан у персонажа?                                                                                                                                                                        |
 | persistentSpeedBuff    | number                                                  | …                                                                                                                                                                                                |
 | persistentReloadBuff   | number                                                  | …                                                                                                                                                                                                |
-| heroUpgradeLevel       | number                                                  | Уровень улучшения персонажа. Считается с нуля. Не все игровые механики используют это поле, поэтому вам также может понадобиться вызвать <b>setUpgradeLevel()</b> у конкретного [Skill](#skill). |
+| heroUpgradeLevel       | number                                                  | Уровень улучшения персонажа. Считается с нуля. Не все игровые механики используют это поле, поэтому вам также может понадобиться вызвать <i>setUpgradeLevel()</i> у конкретного [Skill](#skill). |
 | linkedCharacter        | [LogicCharacter](#logiccharacter) <sup>(readonly)</sup> | Мяч (carryable), который держит персонаж. Если персонаж ничего не держит, то будет равен <b>nil</b>.                                                                                             |
+| consShieldValue        | number <sup>(readonly)</sup>                            | Оставшееся здоровье consumable-щита.                                                                                                                                                             |
 | takingDamageListeners  | List <sup>(readonly)</sup>                              | Список подписок на событие получения урона. Использует класс DamageEventListener.                                                                                                                |
 | dealingDamageListeners | List <sup>(readonly)</sup>                              | Список подписок на событие нанесения урона. Использует класс DamageEventListener.                                                                                                                |
 | deathListeners         | List <sup>(readonly)</sup>                              | Список подписок на событие смерти (когда здоровье опускается до нуля). Использует класс BasicEventListener.                                                                                      |
@@ -130,18 +136,22 @@ isAlive) обновляются только в конце игрового ци
 | takeHeal                                    | (srcIndex: number, damage: number, hasIndication: boolean, someData: [Data](#data), origin: [AttackOrigin](#attackorigin)) ⇒ boolean                                                                                                                                                                                                                                                                               | Лечит определенное количество здоровья игрока.                                                                                                                                                                                                                                                                                                                                                                                                             |
 | stopMovement                                | () ⇒ void                                                                                                                                                                                                                                                                                                                                                                                                          | Останавливает движение персонажа.                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | moveTo                                      | (x: number, y: number, hasCustomSpeed: boolean, customSpeed: number, isNw: boolean, useTeleports: boolean) ⇒ void                                                                                                                                                                                                                                                                                                  | Строит путь и начинает перемещение к указанной точке. Если hasCustomSpeed = false, то используется скорость персонажа.                                                                                                                                                                                                                                                                                                                                     |
+| isPlayerControlRemoved                      | () ⇒ boolean                                                                                                                                                                                                                                                                                                                                                                                                       | Возвращает <b>true</b>, если игрок не может управлять своим персонажем в данный момент.                                                                                                                                                                                                                                                                                                                                                                    |
 | getWeaponSkill                              | () ⇒ [Skill](#skill)                                                                                                                                                                                                                                                                                                                                                                                               | Возвращает скилл основной атаки персонажа.                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | getUltiSkill                                | () ⇒ [Skill](#skill)                                                                                                                                                                                                                                                                                                                                                                                               | Возвращает скилл супера персонажа.                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| getSkill                                    | ([SkillData](#skilldata)) ⇒ [Skill](#skill)                                                                                                                                                                                                                                                                                                                                                                        | Возвращает скилл с соответствующим [SkillData](#skilldata), если такой присутствует у персонажа.                                                                                                                                                                                                                                                                                                                                                           |
+| getSkill                                    | (data: [SkillData](#skilldata)) ⇒ [Skill](#skill)                                                                                                                                                                                                                                                                                                                                                                  | Возвращает скилл с соответствующим [SkillData](#skilldata), если такой присутствует у персонажа.                                                                                                                                                                                                                                                                                                                                                           |
+| useSkill                                    | (data: [SkillData](#skilldata), x: number, y: number, isAutoAim: boolean) ⇒ boolean                                                                                                                                                                                                                                                                                                                                | Использует заданный скилл, если он доступен.                                                                                                                                                                                                                                                                                                                                                                                                               |
 | increaseMaxHitPoints                        | (value: number, powerUps: boolean) ⇒ void                                                                                                                                                                                                                                                                                                                                                                          | Увеличивает максимальное количество здоровья у персонажа. Если второй аргумент равен <b>true</b>, то также увеличивает на 1 количество банок в ШД.                                                                                                                                                                                                                                                                                                         |
 | teleport                                    | (x: number, y: number, srcAreaEffect: [AreaEffectData](#areaeffectdata), destAreaEffect: [AreaEffectData](#areaeffectdata), damage: number, ultiCharge: number) ⇒ void                                                                                                                                                                                                                                             | Телепортирует персонажа в указанную точку. Можно задать эффекты, которые появятся в исходной точке и точке назначения. Эти эффекты будут использовать заданный урон.                                                                                                                                                                                                                                                                                       |
 | spawnCirclingAreaEffect                     | (damageBonus: number, data: [AreaEffectData](#areaeffectdata), origin: [AttackOrigin](#attackorigin), applyOwnerBuffs: boolean, followOwner: boolean) ⇒ [LogicAreaEffect](#logicareaeffect)                                                                                                                                                                                                                        | Создает новый эффект от имени этого персонажа. Конкретно этот метод предполагается для таких механик, как супер Эмз, эффект зарядки ульты Базза или эффект лечения от станции Пэм. В общем, разные долгоживущие эффекты, зачастую привязанные к персонажу.                                                                                                                                                                                                 |
+| getPet                                      | (movingOnly: boolean, standingOnly: boolean) ⇒ [LogicCharacter](#logiccharacter)                                                                                                                                                                                                                                                                                                                                   | Позволяет получить первого питомца этого персонажа, если таковой присутствует. Иначе вернет <b>nil</b>.                                                                                                                                                                                                                                                                                                                                                    |
+| blockHealthRegen                            | () ⇒ void                                                                                                                                                                                                                                                                                                                                                                                                          | Сбрасывает таймер восстановления здоровья.                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | addStatusEffect                             | (data: [StatusEffectData](#statuseffectdata), srcIndex: number, srcTeam: number, origin: [AttackOrigin](#attackorigin), attacker: [LogicCharacter](#logiccharacter)) ⇒ [StatusEffect](#statuseffect)                                                                                                                                                                                                               | Накладывает статус-эффект персонажу. Конкретное поведение эффекта определяется его StatusEffectData. Аргументы srcIndex, srcTeam, attacker позволяют определить от лица какого персонажа (и игрока) будет происходить действие (например, нанесение урона), если это применимо к этому эффекту. Может вернуть <b>nil</b>, если (1) эффект не может быть наложен, либо (2) если такой эффект уже наложен, при этом Stackable = FALSE и Refreshable = FALSE. |
 | addStatusEffectSelf                         | (data: [StatusEffectData](#statuseffectdata), origin: [AttackOrigin](#attackorigin)) ⇒ [StatusEffect](#statuseffect)                                                                                                                                                                                                                                                                                               | Аналогично <i>addStatusEffect()</i>. Действие будет происходить от лица персонажа, на которого накладывается статус эффект.                                                                                                                                                                                                                                                                                                                                |
 | setInvisibility <sup>[[1]](#01def85e)</sup> | (ticks: number, distanceToSee: number) ⇒ void                                                                                                                                                                                                                                                                                                                                                                      | Выдает классическую невидимость, как у супера Леона. Позволяет задать длительность и дистанцию, на которой персонаж становится принудительно видимым.                                                                                                                                                                                                                                                                                                      |
 | setConsumableShield                         | (value: number, ticks: number) ⇒ void                                                                                                                                                                                                                                                                                                                                                                              | Выдает consumable-щит. Позволяет указать его количество здоровья (value) и длительность (ticks).                                                                                                                                                                                                                                                                                                                                                           |
 | gainShield <sup>[[1]](#01def85e)</sup>      | (ticks: number, value: number) ⇒ void                                                                                                                                                                                                                                                                                                                                                                              | Выдает классический щит. Позволяет указать процент защиты (value) и длительность (ticks).                                                                                                                                                                                                                                                                                                                                                                  |
-| stun <sup>[[1]](#01def85e)</sup>            | (ticks: number, skipImmunity: boolean, isSleepy: boolean, isCrossing: boolean) ⇒ boolean                                                                                                                                                                                                                                                                                                                           | Накладывает классический эффект стана. Позволяет указать длительность (ticks) и подтип (isSleepy, isCrossing).                                                                                                                                                                                                                                                                                                                                             |
+| setStun <sup>[[1]](#01def85e)</sup>         | (ticks: number, skipImmunity: boolean, isSleepy: boolean, isCrossing: boolean) ⇒ boolean                                                                                                                                                                                                                                                                                                                           | Накладывает классический эффект стана. Позволяет указать длительность (ticks) и подтип (isSleepy, isCrossing).                                                                                                                                                                                                                                                                                                                                             |
 
 <span id="01def85e"><sup>[1]</sup> По возможности рекомендуется использовать статус-эффекты вместо этого метода.</span>
 
@@ -186,6 +196,7 @@ isAlive) обновляются только в конце игрового ци
 | cancel   | () ⇒ void | Прекращает действие этого статус-эффекта. |
 
 # LogicProjectile
+
 Наследуется от [LogicGameObject](#logicgameobject).
 
 Снаряд. Летит по заданной траектории, может наносить урон персонажам и не только.
@@ -205,6 +216,7 @@ isAlive) обновляются только в конце игрового ци
 | setFinishState | (finishState: number) ⇒ void | …              |
 
 # LogicAreaEffect
+
 Наследуется от [LogicGameObject](#logicgameobject).
 
 Зона с эффектом. Действует на персонажей (и некоторые снаряды), механика зависит от конкретного эффекта.
@@ -222,6 +234,7 @@ isAlive) обновляются только в конце игрового ци
 | destroy  | () ⇒ void | Уничтожает этот эффект немедленно. |
 
 # LogicItem
+
 Наследуется от [LogicGameObject](#logicgameobject).
 
 Предмет. В большинстве случаев его можно поднять или активировать.
@@ -279,16 +292,19 @@ isAlive) обновляются только в конце игрового ци
 | isDynamic | () ⇒ boolean | Возвращает <b>true</b>, если этот тайл был выставлен динамически. |
 
 # AttackOrigin
+
 Является перечислением.
 
 …
 
 # CharacterType
+
 Является перечислением.
 
 …
 
 # GameMode
+
 Является перечислением.
 
 …
@@ -308,41 +324,49 @@ isAlive) обновляются только в конце игрового ци
 | getName     | () ⇒ string | …                                                                                                                  |
 
 # TileData
+
 Наследуется от [Data](#data).
 
 Хранит табличные данные для каждого тайла из <i>tiles.csv</i>.
 
 # SkillData
+
 Наследуется от [Data](#data).
 
 Хранит табличные данные для каждого скилла из <i>skills.csv</i>.
 
 # CharacterData
+
 Наследуется от [Data](#data).
 
 Хранит табличные данные для каждого персонажа из <i>characters.csv</i>.
 
 # ItemData
+
 Наследуется от [Data](#data).
 
 Хранит табличные данные для каждого предмета из <i>items.csv</i>.
 
 # ProjectileData
+
 Наследуется от [Data](#data).
 
 Хранит табличные данные для каждого снаряда из <i>projectiles_skin.csv</i> и <i>projectiles_logic.csv</i>.
 
 # AreaEffectData
+
 Наследуется от [Data](#data).
 
 Хранит табличные данные для каждого скилла из <i>area_effects_skin.csv</i> и <i>area_effects_logic.csv</i>.
 
 # LocationData
+
 Наследуется от [Data](#data).
 
 Хранит табличные данные для каждой локации из <i>locations.csv</i>.
 
 # SkinData
+
 Наследуется от [Data](#data).
 
 Хранит табличные данные для каждого скина из <i>skins.csv</i>.
@@ -351,7 +375,7 @@ isAlive) обновляются только в конце игрового ци
 
 Наследуется от [Data](#data).
 
-Хранит табличные данные для каждого скина из <i>status_effects_skin.csv</i> и <i>status_effects_logic.csv</i>.
+Хранит табличные данные для каждого эффекта из <i>status_effects_skin.csv</i> и <i>status_effects_logic.csv</i>.
 
 # ArrayList
 
