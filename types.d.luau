@@ -421,79 +421,79 @@ export type List<T> = Iterable<T>
 
 export type ArrayList<T> = List<T>
 
-declare Server: {[string]: any}
+declare Server: {}
 
-declare GameObjectManager: {[string]: any}
+declare GameObjectManager: {}
 
-declare ClientInfo: {[string]: any}
+declare ClientInfo: {}
 
-declare LogicGameObject: {[string]: any}
+declare LogicGameObject: {}
 
-declare Traits: {[string]: any}
+declare Traits: {}
 
-declare LogicCharacter: {[string]: any}
+declare LogicCharacter: {}
 
-declare Skill: {[string]: any}
+declare Skill: {}
 
-declare StatusEffect: {[string]: any}
+declare StatusEffect: {}
 
-declare LogicProjectile: {[string]: any}
+declare LogicProjectile: {}
 
-declare LogicAreaEffect: {[string]: any}
+declare LogicAreaEffect: {}
 
-declare LogicItem: {[string]: any}
+declare LogicItem: {}
 
-declare Accessory: {[string]: any}
+declare Accessory: {}
 
-declare TileMap: {[string]: any}
+declare TileMap: {}
 
-declare Tile: {[string]: any}
+declare Tile: {}
 
-declare AttackOrigin: {[string]: any}
+declare AttackOrigin: {[string]: AttackOrigin}
 
-declare CharacterType: {[string]: any}
+declare CharacterType: {[string]: CharacterType}
 
-declare TraitType: {[string]: any}
+declare TraitType: {[string]: TraitType}
 
-declare GameMode: {[string]: any}
+declare GameMode: {[string]: GameMode}
 
-declare Data: {[string]: any}
+declare Data: {}
 
-declare GameObjectData: {[string]: any}
+declare GameObjectData: {}
 
-declare ProjectileData: {[string]: any}
+declare ProjectileData: {}
 
-declare CharacterData: {[string]: any}
+declare CharacterData: {}
 
-declare ItemData: {[string]: any}
+declare ItemData: {}
 
-declare AreaEffectData: {[string]: any}
+declare AreaEffectData: {}
 
-declare TileData: {[string]: any}
+declare TileData: {}
 
-declare SkillData: {[string]: any}
+declare SkillData: {}
 
-declare LocationData: {[string]: any}
+declare LocationData: {}
 
-declare SkinData: {[string]: any}
+declare SkinData: {}
 
-declare StatusEffectData: {[string]: any}
+declare StatusEffectData: {}
 
-declare AccessoryData: {[string]: any}
+declare AccessoryData: {}
 
-declare TraitData: {[string]: any}
+declare TraitData: {}
 
-declare DamageEventListener: {[string]: any}
+declare DamageEventListener: {}
 
-declare SkillEventListener: {[string]: any}
+declare SkillEventListener: {}
 
-declare SourceListener: {[string]: any}
+declare SourceListener: {}
 
-declare BasicListener: {[string]: any}
+declare BasicListener: {}
 
-declare Iterable: {[string]: any}
+declare Iterable: {}
 
-declare List: {[string]: any}
+declare List: {}
 
-declare ArrayList: {[string]: any}
+declare ArrayList: {}
 
