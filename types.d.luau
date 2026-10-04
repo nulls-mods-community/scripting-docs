@@ -342,7 +342,7 @@ declare extern type Tile with
     y: number
     --- Возвращает #true, если этот тайл был выставлен динамически.
     function isDynamic(self): boolean
-    --- Восстанавливает изначальное состояние тайла с момента начала боя.
+    --- Восстанавливает изначальное состояние тайла с момента начала боя. Следует использовать только для восстановления разрушенных стен.
     function restoreOriginal(self): ()
 end
 
@@ -449,7 +449,58 @@ declare TileMap: {}
 
 declare Tile: {}
 
-declare AttackOrigin: {[string]: AttackOrigin}
+declare AttackOrigin = {
+    --- …
+    UNKNOWN: AttackOrigin
+    --- …
+    WEAPON: AttackOrigin
+    --- …
+    ULTI: AttackOrigin
+    --- …
+    STAR_POWER: AttackOrigin
+    --- …
+    ACCESSORY: AttackOrigin
+    --- Зарядка супера от полученного урона. Для урона (лечения) не используется.
+    INCOMING_DAMAGE: AttackOrigin
+    --- …
+    OVERCHARGE_ABILITY: AttackOrigin
+    --- …
+    MODIFIER: AttackOrigin
+    --- …
+    EXTERNAL: AttackOrigin
+    --- Не используется.
+    UNUSED_9: AttackOrigin
+    --- …
+    OVERCHARGE: AttackOrigin
+    --- …
+    GAME_MODE: AttackOrigin
+    --- Используется для урона, который убивает всех персонажей перед началом нового раунда.
+    NEW_ROUND: AttackOrigin
+    --- …
+    PASSIVE_HEALING: AttackOrigin
+    --- Не используется.
+    UNUSED_14: AttackOrigin
+    --- Не используется.
+    UNUSED_15: AttackOrigin
+    --- Не используется.
+    UNUSED_16: AttackOrigin
+    --- Не используется.
+    UNUSED_17: AttackOrigin
+    --- Не используется.
+    UNUSED_18: AttackOrigin
+    --- Используется мутациями и большинством особых способностей из Traits.
+    MUTATION: AttackOrigin
+    --- …
+    PASSIVE_CHARGING: AttackOrigin
+    --- Используется новыми гаджетами.
+    BONUS_SKILL: AttackOrigin
+    --- …
+    COMPONENT: AttackOrigin
+    --- Не используется.
+    UNUSED_23: AttackOrigin
+    --- Используется для урона от щита Венди.
+    REDIRECT_SHIELD: AttackOrigin
+}
 
 declare CharacterType: {[string]: CharacterType}
 
@@ -457,7 +508,36 @@ declare TraitType: {[string]: TraitType}
 
 declare GameMode: {[string]: GameMode}
 
-declare Data: {}
+declare Data = {
+    --- …
+    TYPE_PROJECTILE: number
+    --- …
+    TYPE_LOCATION: number
+    --- …
+    TYPE_CHARACTER: number
+    --- …
+    TYPE_AREA_EFFECT: number
+    --- …
+    TYPE_ITEM: number
+    --- …
+    TYPE_SKILL: number
+    --- …
+    TYPE_CARD: number
+    --- …
+    TYPE_TILE: number
+    --- …
+    TYPE_SKIN: number
+    --- …
+    TYPE_ACCESSORY: number
+    --- …
+    TYPE_EMOTE: number
+    --- …
+    TYPE_SPRAY: number
+    --- …
+    TYPE_TRAIT: number
+    --- …
+    TYPE_STATUS_EFFECT: number
+}
 
 declare GameObjectData: {}
 

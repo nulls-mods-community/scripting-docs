@@ -334,16 +334,46 @@ isAlive) обновляются только в конце игрового ци
 
 ### Методы:
 
-| Название        | Тип          | Предназначение                                                    |
-|-----------------|--------------|-------------------------------------------------------------------|
-| isDynamic       | () ⇒ boolean | Возвращает <b>true</b>, если этот тайл был выставлен динамически. |
-| restoreOriginal | () ⇒ ()      | Восстанавливает изначальное состояние тайла с момента начала боя. |
+| Название        | Тип          | Предназначение                                                                                                                     |
+|-----------------|--------------|------------------------------------------------------------------------------------------------------------------------------------|
+| isDynamic       | () ⇒ boolean | Возвращает <b>true</b>, если этот тайл был выставлен динамически.                                                                  |
+| restoreOriginal | () ⇒ ()      | Восстанавливает изначальное состояние тайла с момента начала боя. Следует использовать только для восстановления разрушенных стен. |
 
 # AttackOrigin
 
 Является перечислением.
 
-…
+Указывает на происхождение урона (лечения) или источник зарядки супера.
+
+### Константы:
+
+| Название           | Тип                           | Предназначение                                                                       |
+|--------------------|-------------------------------|--------------------------------------------------------------------------------------|
+| UNKNOWN            | [AttackOrigin](#attackorigin) | …                                                                                    |
+| WEAPON             | [AttackOrigin](#attackorigin) | …                                                                                    |
+| ULTI               | [AttackOrigin](#attackorigin) | …                                                                                    |
+| STAR_POWER         | [AttackOrigin](#attackorigin) | …                                                                                    |
+| ACCESSORY          | [AttackOrigin](#attackorigin) | …                                                                                    |
+| INCOMING_DAMAGE    | [AttackOrigin](#attackorigin) | Зарядка супера от полученного урона. Для урона (лечения) не используется.            |
+| OVERCHARGE_ABILITY | [AttackOrigin](#attackorigin) | …                                                                                    |
+| MODIFIER           | [AttackOrigin](#attackorigin) | …                                                                                    |
+| EXTERNAL           | [AttackOrigin](#attackorigin) | …                                                                                    |
+| UNUSED_9           | [AttackOrigin](#attackorigin) | Не используется.                                                                     |
+| OVERCHARGE         | [AttackOrigin](#attackorigin) | …                                                                                    |
+| GAME_MODE          | [AttackOrigin](#attackorigin) | …                                                                                    |
+| NEW_ROUND          | [AttackOrigin](#attackorigin) | Используется для урона, который убивает всех персонажей перед началом нового раунда. |
+| PASSIVE_HEALING    | [AttackOrigin](#attackorigin) | …                                                                                    |
+| UNUSED_14          | [AttackOrigin](#attackorigin) | Не используется.                                                                     |
+| UNUSED_15          | [AttackOrigin](#attackorigin) | Не используется.                                                                     |
+| UNUSED_16          | [AttackOrigin](#attackorigin) | Не используется.                                                                     |
+| UNUSED_17          | [AttackOrigin](#attackorigin) | Не используется.                                                                     |
+| UNUSED_18          | [AttackOrigin](#attackorigin) | Не используется.                                                                     |
+| MUTATION           | [AttackOrigin](#attackorigin) | Используется мутациями и большинством особых способностей из [Traits](#traits).      |
+| PASSIVE_CHARGING   | [AttackOrigin](#attackorigin) | …                                                                                    |
+| BONUS_SKILL        | [AttackOrigin](#attackorigin) | Используется новыми гаджетами.                                                       |
+| COMPONENT          | [AttackOrigin](#attackorigin) | …                                                                                    |
+| UNUSED_23          | [AttackOrigin](#attackorigin) | Не используется.                                                                     |
+| REDIRECT_SHIELD    | [AttackOrigin](#attackorigin) | Используется для урона от щита Венди.                                                |
 
 # CharacterType
 
@@ -367,6 +397,25 @@ isAlive) обновляются только в конце игрового ци
 
 Абстрактный класс. Хранит табличные данные (.csv) для какого-то конкретного объекта. Например, Wall1 из <i>tiles.csv</i> будет описываться своим
 объектом [TileData](#tiledata).
+
+### Константы:
+
+| Название           | Тип    | Предназначение |
+|--------------------|--------|----------------|
+| TYPE_PROJECTILE    | number | …              |
+| TYPE_LOCATION      | number | …              |
+| TYPE_CHARACTER     | number | …              |
+| TYPE_AREA_EFFECT   | number | …              |
+| TYPE_ITEM          | number | …              |
+| TYPE_SKILL         | number | …              |
+| TYPE_CARD          | number | …              |
+| TYPE_TILE          | number | …              |
+| TYPE_SKIN          | number | …              |
+| TYPE_ACCESSORY     | number | …              |
+| TYPE_EMOTE         | number | …              |
+| TYPE_SPRAY         | number | …              |
+| TYPE_TRAIT         | number | …              |
+| TYPE_STATUS_EFFECT | number | …              |
 
 ### Методы:
 
