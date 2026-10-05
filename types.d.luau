@@ -449,7 +449,7 @@ declare TileMap: {}
 
 declare Tile: {}
 
-declare AttackOrigin = {
+declare AttackOrigin: {
     --- …
     UNKNOWN: AttackOrigin
     --- …
@@ -508,7 +508,7 @@ declare TraitType: {[string]: TraitType}
 
 declare GameMode: {[string]: GameMode}
 
-declare Data = {
+declare Data: {
     --- …
     TYPE_PROJECTILE: number
     --- …

@@ -9,7 +9,7 @@ function tick()
 
             local callback = function(origin)
                 if origin ~= AttackOrigin.NEW_ROUND then
-                    local data = lookup(17, "HeistBombExplosion")
+                    local data = lookup(Data.TYPE_AREA_EFFECT, "HeistBombExplosion")
                     character:spawnCirclingAreaEffect(0, data, AttackOrigin.UNKNOWN, false, false)
                     log("Boom!")
                 end

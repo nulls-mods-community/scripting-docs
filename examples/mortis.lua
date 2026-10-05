@@ -1,6 +1,6 @@
 -- Makes Mortis (Undertaker) to have infinite ulti; does not affect any other character
 
-local undertaker = lookup(16, "Undertaker")
+local undertaker = lookup(Data.TYPE_CHARACTER, "Undertaker")
 
 function tick()
     for i = 0, (server.playersCount - 1) do
