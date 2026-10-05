@@ -451,90 +451,96 @@ declare Tile: {}
 
 declare AttackOrigin: {
     --- …
-    UNKNOWN: AttackOrigin
+    UNKNOWN: AttackOrigin,
     --- …
-    WEAPON: AttackOrigin
+    WEAPON: AttackOrigin,
     --- …
-    ULTI: AttackOrigin
+    ULTI: AttackOrigin,
     --- …
-    STAR_POWER: AttackOrigin
+    STAR_POWER: AttackOrigin,
     --- …
-    ACCESSORY: AttackOrigin
+    ACCESSORY: AttackOrigin,
     --- Зарядка супера от полученного урона. Для урона (лечения) не используется.
-    INCOMING_DAMAGE: AttackOrigin
+    INCOMING_DAMAGE: AttackOrigin,
     --- …
-    OVERCHARGE_ABILITY: AttackOrigin
+    OVERCHARGE_ABILITY: AttackOrigin,
     --- …
-    MODIFIER: AttackOrigin
+    MODIFIER: AttackOrigin,
     --- …
-    EXTERNAL: AttackOrigin
+    EXTERNAL: AttackOrigin,
     --- Не используется.
-    UNUSED_9: AttackOrigin
+    UNUSED_9: AttackOrigin,
     --- …
-    OVERCHARGE: AttackOrigin
+    OVERCHARGE: AttackOrigin,
     --- …
-    GAME_MODE: AttackOrigin
+    GAME_MODE: AttackOrigin,
     --- Используется для урона, который убивает всех персонажей перед началом нового раунда.
-    NEW_ROUND: AttackOrigin
+    NEW_ROUND: AttackOrigin,
     --- …
-    PASSIVE_HEALING: AttackOrigin
+    PASSIVE_HEALING: AttackOrigin,
     --- Не используется.
-    UNUSED_14: AttackOrigin
+    UNUSED_14: AttackOrigin,
     --- Не используется.
-    UNUSED_15: AttackOrigin
+    UNUSED_15: AttackOrigin,
     --- Не используется.
-    UNUSED_16: AttackOrigin
+    UNUSED_16: AttackOrigin,
     --- Не используется.
-    UNUSED_17: AttackOrigin
+    UNUSED_17: AttackOrigin,
     --- Не используется.
-    UNUSED_18: AttackOrigin
+    UNUSED_18: AttackOrigin,
     --- Используется мутациями и большинством особых способностей из Traits.
-    MUTATION: AttackOrigin
+    MUTATION: AttackOrigin,
     --- …
-    PASSIVE_CHARGING: AttackOrigin
+    PASSIVE_CHARGING: AttackOrigin,
     --- Используется новыми гаджетами.
-    BONUS_SKILL: AttackOrigin
+    BONUS_SKILL: AttackOrigin,
     --- …
-    COMPONENT: AttackOrigin
+    COMPONENT: AttackOrigin,
     --- Не используется.
-    UNUSED_23: AttackOrigin
+    UNUSED_23: AttackOrigin,
     --- Используется для урона от щита Венди.
     REDIRECT_SHIELD: AttackOrigin
 }
 
-declare CharacterType: {[string]: CharacterType}
+declare CharacterType: {
+    [string]: CharacterType
+}
 
-declare TraitType: {[string]: TraitType}
+declare TraitType: {
+    [string]: TraitType
+}
 
-declare GameMode: {[string]: GameMode}
+declare GameMode: {
+    [string]: GameMode
+}
 
 declare Data: {
     --- …
-    TYPE_PROJECTILE: number
+    TYPE_PROJECTILE: number,
     --- …
-    TYPE_LOCATION: number
+    TYPE_LOCATION: number,
     --- …
-    TYPE_CHARACTER: number
+    TYPE_CHARACTER: number,
     --- …
-    TYPE_AREA_EFFECT: number
+    TYPE_AREA_EFFECT: number,
     --- …
-    TYPE_ITEM: number
+    TYPE_ITEM: number,
     --- …
-    TYPE_SKILL: number
+    TYPE_SKILL: number,
     --- …
-    TYPE_CARD: number
+    TYPE_CARD: number,
     --- …
-    TYPE_TILE: number
+    TYPE_TILE: number,
     --- …
-    TYPE_SKIN: number
+    TYPE_SKIN: number,
     --- …
-    TYPE_ACCESSORY: number
+    TYPE_ACCESSORY: number,
     --- …
-    TYPE_EMOTE: number
+    TYPE_EMOTE: number,
     --- …
-    TYPE_SPRAY: number
+    TYPE_SPRAY: number,
     --- …
-    TYPE_TRAIT: number
+    TYPE_TRAIT: number,
     --- …
     TYPE_STATUS_EFFECT: number
 }
