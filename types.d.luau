@@ -168,6 +168,8 @@ declare extern type LogicCharacter extends LogicGameObject with
     hasRespawnShield: boolean
     --- Оставшееся здоровье consumable-щита.
     consShieldValue: number
+    --- …
+    statusEffects: StatusEffectList?
     --- Список подписок на событие получения урона.
     takingDamageListeners: List<DamageEventListener>
     --- Список подписок на событие нанесения урона.
@@ -188,6 +190,8 @@ declare extern type LogicCharacter extends LogicGameObject with
     function moveTo(self, x: number, y: number, hasCustomSpeed: boolean, customSpeed: number, isNw: boolean, useTeleports: boolean): ()
     --- Возвращает #true, если игрок не может управлять своим персонажем в данный момент.
     function isPlayerControlRemoved(self): boolean
+    --- Возвращает #true, если персонаж находится в движении.
+    function isInMovement(self): boolean
     --- Возвращает скилл основной атаки персонажа.
     function getWeaponSkill(self): Skill?
     --- Возвращает скилл супера персонажа.
@@ -196,6 +200,12 @@ declare extern type LogicCharacter extends LogicGameObject with
     function getSkill(self, data: SkillData?): Skill?
     --- Использует заданный скилл, если он доступен.
     function useSkill(self, data: SkillData?, x: number, y: number, isAutoAim: boolean): boolean
+    --- Возвращает текущую скорость ходьбы с учетом баффов.
+    function getWalkSpeed(self, x: number, y: number): number
+    --- Возвращает суммарный бафф урона в процентах.
+    function getSummaryDamageBuff(self): number
+    --- Меняет текущего игрового персонажа на заданного. Механика супера Мэг или Бонни.
+    function changeCharacter(self, data: CharacterData?): LogicCharacter?
     --- Увеличивает максимальное количество здоровья у персонажа. Если второй аргумент равен #true, то также увеличивает на 1 количество банок в ШД.
     function increaseMaxHitPoints(self, value: number, powerUps: boolean): ()
     --- Телепортирует персонажа в указанную точку. Можно задать эффекты, которые появятся в исходной точке и точке назначения. Эти эффекты будут использовать заданный урон.
@@ -241,17 +251,28 @@ declare extern type Skill with
     function isUltiSkill(self): boolean
 end
 
+declare extern type StatusEffectList with
+    --- Ищет конкретный эффект по его <i>data</i>. Возвращает #nil, если такого эффекта нет.
+    function getEffect(self, data: StatusEffectData?): StatusEffect?
+    --- Ищет конкретный эффект по его <i>data</i> и <i>sourceIndex</i>. Возвращает #nil, если такого эффекта нет.
+    function getEffectSpec(self, data: StatusEffectData?, sourceIndex: number): StatusEffect?
+end
+
 declare extern type StatusEffect with
     --- …
     data: StatusEffectData
-    --- Общее количество тиков, в течение которых действует этот статус-эффект.
-    ticksTotal: number
-    --- Оставшееся количество тиков, в течение которых действует этот статус-эффект. Монотонно убывает.
-    ticksLeft: number
     --- Базовое значение периодического урона без учета баффов и уровня.
     damageBase: number
     --- Базовое значение периодического исцеления без учета баффов и уровня.
     healingBase: number
+    --- Индекс игрока, наложившего эффект.
+    sourceIndex: number
+    --- Номер команды игрока, наложившего эффект.
+    sourceTeam: number
+    --- Общее количество тиков, в течение которых действует этот статус-эффект.
+    ticksTotal: number
+    --- Оставшееся количество тиков, в течение которых действует этот статус-эффект. Монотонно убывает.
+    ticksLeft: number
     --- Прекращает действие статус-эффекта.
     function cancel(self): ()
     --- Продлевает действие статус-эффекта на указанное количество тиков.
@@ -267,6 +288,14 @@ declare extern type LogicProjectile extends LogicGameObject with
     shotCharacter: LogicCharacter?
     --- …
     origin: AttackOrigin
+    --- Угол направления.
+    angle: number
+    --- Урон, который будет наносить этот эффект персонажам в зоне действия.
+    damage: number
+    --- Количество супера, которое будет заряжаться у игрока при каждом нанесения урона.
+    ultiEnergy: number
+    --- …
+    statusEffects: StatusEffectList?
     --- …
     function setFinishState(self, finishState: number): ()
 end
@@ -365,8 +394,10 @@ declare extern type Data with
     function getType(self): number
     --- Возвращает свой уникальный ID. Фактически считается так: <code>(this.getType() * 1000000) + this.getIndex()</code>
     function getGlobalId(self): number
-    --- …
+    --- Возвращает свое название (Name).
     function getName(self): string
+    --- Вернет #true, если текущий и указанный Data описывают один и тот же объект, но для разных скинов. Например, для <i>Brock_def_atk_area</i> и <i>Brock_002_atk_area</i> из <i>area_effects_skin.csv</i>. По сути, сверяет колонку <i>Logic</i> на равенство.
+    function isSameAs(self, data: Data?): boolean
 end
 
 declare extern type GameObjectData extends Data with
@@ -434,6 +465,8 @@ declare Traits: {}
 declare LogicCharacter: {}
 
 declare Skill: {}
+
+declare StatusEffectList: {}
 
 declare StatusEffect: {}
 
