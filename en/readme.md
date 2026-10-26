@@ -27,9 +27,9 @@ Important note: Our battle server is written in Java. Because of this, our API i
 
 In Lua, each of these objects is represented as *userdata*, not a *table*. You cannot create such objects by yourself — you can only obtain them through our API.
 
-Every Java object belongs to a class that determines its available fields and methods. A full list of classes can be found in a separate document: [API Reference](reference.md).
+Every Java object belongs to a class that determines its available fields and methods. A full list of classes can be found in a separate document: [API Reference](en/reference.md).
 
-Every script has access to an object of the [Server](reference.md#server) class. This object exists as a single instance and is the main entry point to our API. It is available through the global variable **server**.
+Every script has access to an object of the [Server](en/reference.md#server) class. This object exists as a single instance and is the main entry point to our API. It is available through the global variable **server**.
 
 ### Primary actions with Java objects
 
@@ -63,7 +63,7 @@ For each Java class, a corresponding table is created in Lua, accessible as a gl
 
 This table is not a class, but it stores a **copy** of its static fields and methods.
 
-That is especially relevant for enums, such as [AttackOrigin](reference.md#attackorigin) or [GameMode](reference.md#attackorigin). Objects of these classes are always constant and are stored as their static fields.
+That is especially relevant for enums, such as [AttackOrigin](en/reference.md#attackorigin) or [GameMode](en/reference.md#attackorigin). Objects of these classes are always constant and are stored as their static fields.
 
 Usage example:
 ```lua
@@ -108,8 +108,8 @@ log(json.encode(values))
 
 Some classes in Java can be abstract. Such classes cannot have instances. They are used to generalize several descendant classes into one type with shared fields or methods.
 
-For example, [LogicGameObject](reference.md#logicgameobject) is an abstract class. When you call `createObject()` or `objectManager:getObject()`, you will actually receive an instance of one of its children: [LogicCharacter](reference.md#logiccharacter), [LogicItem](reference.md#logicitem),
-[LogicProjectile](reference.md#logicprojectile) or [LogicAreaEffect](reference.md#logicareaeffect).
+For example, [LogicGameObject](en/reference.md#logicgameobject) is an abstract class. When you call `createObject()` or `objectManager:getObject()`, you will actually receive an instance of one of its children: [LogicCharacter](en/reference.md#logiccharacter), [LogicItem](en/reference.md#logicitem),
+[LogicProjectile](en/reference.md#logicprojectile) or [LogicAreaEffect](en/reference.md#logicareaeffect).
 
 
 It works both ways: `objectManager:addObject()` will accept any of those child classes as an argument.
@@ -120,7 +120,7 @@ Additionally, it is worth considering Iterable, List, and ArrayList. ArrayList i
 
 ### Event subscriptions
 
-Let’s examine [LogicCharacter](reference.md#logiccharacter) and its **takingDamageListeners** field. This is a list of subscriptions to the event of taking damage.
+Let’s examine [LogicCharacter](en/reference.md#logiccharacter) and its **takingDamageListeners** field. This is a list of subscriptions to the event of taking damage.
 
 This list is presented as an ArrayList class. In other words, this is a Java object that stores **other** Java objects inside it. We cannot add an arbitrary Lua function to this list.
 
@@ -168,17 +168,17 @@ In Brawl Stars, the simulation of game logic takes place on the server at a rate
 
 | Type | File(s)                                           | Class                                             |
 | ---- | ------------------------------------------------- | ------------------------------------------------- |
-| 6    | projectiles_skin.csv, projectiles_logic.csv       | [ProjectileData](reference.md#projectiledata)     |
-| 15   | locations.csv                                     | [LocationData](reference.md#locationdata)         |
-| 16   | characters.csv                                    | [CharacterData](reference.md#characterdata)       |
-| 17   | area_effects_skin.csv, area_effects_logic.csv     | [AreaEffectData](reference.md#areaeffectdata)     |
-| 18   | items.csv                                         | [ItemData](reference.md#itemdata)                 |
-| 20   | skills.csv                                        | [SkillData](reference.md#skilldata)               |
+| 6    | projectiles_skin.csv, projectiles_logic.csv       | [ProjectileData](en/reference.md#projectiledata)  |
+| 15   | locations.csv                                     | [LocationData](en/reference.md#locationdata)      |
+| 16   | characters.csv                                    | [CharacterData](en/reference.md#characterdata)    |
+| 17   | area_effects_skin.csv, area_effects_logic.csv     | [AreaEffectData](en/reference.md#areaeffectdata)  |
+| 18   | items.csv                                         | [ItemData](en/reference.md#itemdata)              |
+| 20   | skills.csv                                        | [SkillData](en/reference.md#skilldata)            |
 | 23   | cards.csv                                         |                                                   |
-| 27   | tiles.csv                                         | [TileData](reference.md#tiledata)                 |
-| 29   | skins.csv                                         | [SkinData](reference.md#skindata)                 |
-| 50   | accessories.csv                                   | [AccessoryData](reference.md#accessorydata)       |
+| 27   | tiles.csv                                         | [TileData](en/reference.md#tiledata)              |
+| 29   | skins.csv                                         | [SkinData](en/reference.md#skindata)              |
+| 50   | accessories.csv                                   | [AccessoryData](en/reference.md#accessorydata)    |
 | 52   | emotes.csv                                        |                                                   |
 | 68   | sprays.csv                                        |                                                   |
-| 108  | traits.csv                                        | [TraitData](reference.md#traitdata)               |
-| 117  | status_effects_skin.csv, status_effects_logic.csv | [StatusEffectData](reference.md#statuseffectdata) |
+| 108  | traits.csv                                        | [TraitData](en/reference.md#traitdata)            |
+| 117  | status_effects_skin.csv, status_effects_logic.csv | [StatusEffectData](en/reference.md#statuseffectdata) |
