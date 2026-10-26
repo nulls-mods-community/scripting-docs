@@ -89,7 +89,7 @@ event("scheduleTasks", {
             x = 300.0,
             y = 100.0,
             animation = "appear",
-            texts = { { binding = "txt", "text" = "Hi there!" } }
+            texts = { { binding = "txt", text = "Hi there!" } }
         },
         {
             action = "removeUIItem",
