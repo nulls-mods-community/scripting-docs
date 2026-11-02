@@ -208,6 +208,8 @@ declare extern type LogicCharacter extends LogicGameObject with
     function getSummaryDamageBuff(self): number
     --- Меняет текущего игрового персонажа на заданного. Механика супера Мэг или Бонни.
     function changeCharacter(self, data: CharacterData?): LogicCharacter?
+    --- Позволяет подменить скин конкретного персонажа. Не влияет на скин игрока в целом. Рекомендуется вызывать одновременно (в тот же тик) со спавном или сменой персонажа.
+    function overrideSkin(self, data: SkinData?): ()
     --- Увеличивает максимальное количество здоровья у персонажа. Если второй аргумент равен #true, то также увеличивает на 1 количество банок в ШД.
     function increaseMaxHitPoints(self, value: number, powerUps: boolean): ()
     --- Телепортирует персонажа в указанную точку. Можно задать эффекты, которые появятся в исходной точке и точке назначения. Эти эффекты будут использовать заданный урон.
