@@ -19,6 +19,14 @@ type createCallback2 = (class: "SourceListener", callback: SourceCallback) -> So
 type createCallback3 = (class: "BasicListener", callback: BasicCallback) -> BasicListener
 type createCallback4 = (class: "InputListener", callback: InputCallback) -> InputListener
 
+export type Text = {binding: string, text: string, [any]: never}
+export type Button = {binding: string, client_input_value: number, [any]: never}
+export type Task = {action: "updateUIItem" | "removeUIItem", id: number, tomlId: string?, animation: string?, x: number?, y: number?, texts: { Text }?, buttons: { Button }?, delay: number?, [any]: never}
+
+type event0 = (action: "updateUIItem", data: {id: number, tomlId: string, animation: string?, x: number?, y: number?, texts: { Text }?, buttons: { Button }?, target_index: number?, target_team: number?, delay: number?, [any]: never}) -> ()
+type event1 = (action: "removeUIItem", data: {id: number, target_index: number?, target_team: number?, delay: number?, tomlId: nil, animation: nil, x: nil, y: nil, texts: nil, buttons: nil, [any]: never}) -> ()
+type event2 = (action: "scheduleTasks", data: {tasks: { Task }, target_index: number?, target_team: number?, delay: number?, id: nil, tomlId: nil, animation: nil, x: nil, y: nil, texts: nil, buttons: nil, [any]: never}) -> ()
+
 --- Глобальный экземпляр класса Server.
 declare server: Server
 
@@ -35,7 +43,7 @@ declare createCallback: createCallback0 & createCallback1 & createCallback2 & cr
 declare function log(...: any): ()
 
 --- Отправляет событие на клиент.
-declare function event(action: string, data: any): ()
+declare event: event0 & event1 & event2
 
 --- Глобально доступная библиотека `rxi/json.lua` для кодирования и декодирования JSON.
 declare json: {
