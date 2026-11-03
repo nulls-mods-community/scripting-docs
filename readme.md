@@ -1,5 +1,7 @@
 # NB Scripting
 
+[English version](en) of this documentation is also available.
+
 #### Канал в ТГ: [@danyanull](https://t.me/danyanull)
 
 NB Scripting — это технология, позволяющая создавать и использовать пользовательские скрипты в боях Null’s Brawl.
@@ -67,7 +69,7 @@ end
 Для каждого Java-класса в Lua создается своя таблица (*table*), доступная как одноименная глобальная переменная. Например, `AttackOrigin` или `LogicCharacter`.
 Эта таблица не является классом, однако хранит **копию** его статических полей и методов.
 
-Это особенно актуально для классов-перечислений (enums), таких, как [AttackOrigin](reference.md#attackorigin) или [GameMode](reference.md#attackorigin). Объекты
+Это особенно актуально для классов-перечислений (enums), таких, как [AttackOrigin](reference.md#attackorigin) или [GameMode](reference.md#gamemode). Объекты
 таких классов всегда постоянны и хранятся как их статические поля.
 
 Пример использования:

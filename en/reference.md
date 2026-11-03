@@ -5,7 +5,7 @@ The current battle object. Exists as a single instance. Serves as the entry poin
 ### Fields:
 
 | Name                 | Type                                                                 | Purpose                                                                                             |
-| -------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+|----------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
 | tick                 | number <sup>(readonly)</sup>                                         | Current server tick. Monotonically increases by 1 every 50 milliseconds.                            |
 | playersCount         | number <sup>(readonly)</sup>                                         | Number of players in the battle.                                                                    |
 | locationData         | [LocationData](#locationdata)? <sup>(readonly)</sup>                 | [LocationData](#locationdata) of the current location. Can be <b>nil</b> if a custom map is in use. |
@@ -20,7 +20,7 @@ The current battle object. Exists as a single instance. Serves as the entry poin
 ### Methods:
 
 | Name              | Type                                         | Purpose                                                                                                          |
-| ----------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+|-------------------|----------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 | getClientInfo     | (index: number) ⇒ [ClientInfo](#clientinfo)? | Allows you to retrieve a [ClientInfo](#clientinfo) object by player index.                                       |
 | isIntroFinished   | () ⇒ boolean                                 | Allows you to check if the battle intro animation has ended.                                                     |
 | getRandomInt      | (N: number, M: number) ⇒ number              | Allows you to get a random integer from N to M: [N, M). Uses the same random number generator as the game logic. |
@@ -33,7 +33,7 @@ Manager of game objects [LogicGameObject](#logicgameobject). Stores game objects
 ### Methods:
 
 | Name           | Type                                                            | Purpose                                                              |
-| -------------- | --------------------------------------------------------------- | -------------------------------------------------------------------- |
+|----------------|-----------------------------------------------------------------|----------------------------------------------------------------------|
 | getObject      | (id: number) ⇒ [LogicGameObject](#logicgameobject)?             | Searches for an object by its Object ID.                             |
 | addObject      | (object: [LogicGameObject](#logicgameobject)?) ⇒ ()             | Adds a new object to the battlefield.                                |
 | getCharacters  | () ⇒ [Iterable](#iterable)<[LogicCharacter](#logiccharacter)>   | Returns a list of [LogicCharacter](#logiccharacter) class objects.   |
@@ -43,35 +43,36 @@ Manager of game objects [LogicGameObject](#logicgameobject). Stores game objects
 
 # ClientInfo
 
-Data for a specific player. A single instance of this object is created for each player for the entire battle. Keep in mind that some fields (e.g., `x`, `y`, `isAlive`) are only updated at the end of the game loop each tick.
+Data for a specific player. A single instance of this object is created for each player for the entire battle. Keep in mind that some fields (e.g., `x`, `y`,
+`isAlive`) are only updated at the end of the game loop each tick.
 
 ### Fields:
 
-| Name                | Type                                           | Purpose                                                                                                                                |
-| ------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| index               | number <sup>(readonly)</sup>                   | This player's index.                                                                                                                   |
-| team                | number <sup>(readonly)</sup>                   | The player's team number. Two players on the same team will share this value.                                                          |
-| objectId            | number <sup>(readonly)</sup>                   | Object ID of the current [LogicCharacter](#logiccharacter) that the player is playing as.                                              |
-| x                   | number <sup>(readonly)</sup>                   | …                                                                                                                                      |
+| Name                | Type                                           | Purpose                                                                                                                                 |
+|---------------------|------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| index               | number <sup>(readonly)</sup>                   | This player's index.                                                                                                                    |
+| team                | number <sup>(readonly)</sup>                   | The player's team number. Two players on the same team will share this value.                                                           |
+| objectId            | number <sup>(readonly)</sup>                   | Object ID of the current [LogicCharacter](#logiccharacter) that the player is playing as.                                               |
+| x                   | number <sup>(readonly)</sup>                   | …                                                                                                                                       |
 | y                   | number <sup>(readonly)</sup>                   | Player camera position. Will, in most cases, match the position of the [LogicCharacter](#logiccharacter) that the player is playing as. |
-| gamePoints          | number                                         | Number of game points. Its purpose depends on the game mode.                                                                           |
-| isAlive             | boolean <sup>(readonly)</sup>                  | Equals <b>true</b> if the player's character is alive and present on the map.                                                          |
-| isBot               | boolean <sup>(readonly)</sup>                  | Indicates whether the player is a bot.                                                                                                 |
-| ultiCharge          | number                                         | …                                                                                                                                      |
-| maxUltiCharge       | number <sup>(readonly)</sup>                   | …                                                                                                                                      |
-| overchargeCharge    | number                                         | …                                                                                                                                      |
-| maxOverchargeCharge | number <sup>(readonly)</sup>                   | …                                                                                                                                      |
-| ultiUsesLeft        | number <sup>(readonly)</sup>                   | …                                                                                                                                      |
-| isRespawning        | boolean <sup>(readonly)</sup>                  | Equals <b>true</b> if the player is respawning and is about to spawn in.                                                               |
-| emoteUsedIndex      | number <sup>(readonly)</sup>                   | …                                                                                                                                      |
-| emoteUsedTick       | number <sup>(readonly)</sup>                   | …                                                                                                                                      |
-| isOverchargeActive  | boolean <sup>(readonly)</sup>                  | …                                                                                                                                      |
-| accessory           | [Accessory](#accessory)? <sup>(readonly)</sup> | …                                                                                                                                      |
+| gamePoints          | number                                         | Number of game points. Its purpose depends on the game mode.                                                                            |
+| isAlive             | boolean <sup>(readonly)</sup>                  | Equals <b>true</b> if the player's character is alive and present on the map.                                                           |
+| isBot               | boolean <sup>(readonly)</sup>                  | Indicates whether the player is a bot.                                                                                                  |
+| ultiCharge          | number                                         | …                                                                                                                                       |
+| maxUltiCharge       | number <sup>(readonly)</sup>                   | …                                                                                                                                       |
+| overchargeCharge    | number                                         | …                                                                                                                                       |
+| maxOverchargeCharge | number <sup>(readonly)</sup>                   | …                                                                                                                                       |
+| ultiUsesLeft        | number <sup>(readonly)</sup>                   | …                                                                                                                                       |
+| isRespawning        | boolean <sup>(readonly)</sup>                  | Equals <b>true</b> if the player is respawning and is about to spawn in.                                                                |
+| emoteUsedIndex      | number <sup>(readonly)</sup>                   | …                                                                                                                                       |
+| emoteUsedTick       | number <sup>(readonly)</sup>                   | …                                                                                                                                       |
+| isOverchargeActive  | boolean <sup>(readonly)</sup>                  | …                                                                                                                                       |
+| accessory           | [Accessory](#accessory)? <sup>(readonly)</sup> | …                                                                                                                                       |
 
 ### Methods:
 
 | Name          | Type                        | Purpose                                                                                                                                                                                        |
-| ------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | getSkinData   | () ⇒ [SkinData](#skindata)? | Returns the current [SkinData](#skindata) for this player.                                                                                                                                     |
 | getAttackTeam | () ⇒ number                 | Returns the player's effective team number. If the player is controlled by Willow, the value will be equal to that Willow's team number. Otherwise, it will be equal to the <i>team</i> field. |
 
@@ -82,7 +83,7 @@ Abstract class. Game object on the battlefield.
 ### Fields:
 
 | Name      | Type                                                    | Purpose                                                                                                         |
-| --------- | ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+|-----------|---------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | id        | number <sup>(readonly)</sup>                            | Unique Object ID of this object.                                                                                |
 | data      | [GameObjectData](#gameobjectdata) <sup>(readonly)</sup> | …                                                                                                               |
 | x         | number <sup>(readonly)</sup>                            | …                                                                                                               |
@@ -96,7 +97,7 @@ Abstract class. Game object on the battlefield.
 ### Methods:
 
 | Name               | Type                                   | Purpose                                                                                                                                                                                                                            |
-| ------------------ | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | setPosition        | (x: number, y: number, z: number) ⇒ () | Sets the object's coordinates. Note: Game logic may overwrite your coordinates if the object is moving.                                                                                                                            |
 | isAlive            | () ⇒ boolean                           | Returns <b>false</b> if the object was destroyed or killed. Otherwise, it returns <b>true</b>.                                                                                                                                     |
 | getType            | () ⇒ number                            | Allows you to determine the type of this object: <b>0</b> = [LogicCharacter](#logiccharacter), <b>1</b> = [LogicProjectile](#logicprojectile), <b>2</b> = [LogicAreaEffect](#logicareaeffect), <b>3</b> = [LogicItem](#logicitem). |
@@ -111,7 +112,7 @@ Manager of special abilities (traits) for a specific game object. New objects in
 ### Methods:
 
 | Name         | Type                                                       | Purpose                                                                                                                   |
-| ------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+|--------------|------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
 | add          | (data: [TraitData](#traitdata)?) ⇒ ()                      | Adds a specific trait.                                                                                                    |
 | remove       | (data: [TraitData](#traitdata)?) ⇒ boolean                 | Removes a specific trait.                                                                                                 |
 | getComponent | (type: [TraitType](#traittype)) ⇒ [TraitData](#traitdata)? | Allows you to retrieve a specific trait by its type. Returns <b>nil</b> if the object does not have a trait of that type. |
@@ -125,7 +126,7 @@ Character. Has health, can move along a given path, and attack. The broadest obj
 ### Fields:
 
 | Name                     | Type                                                                             | Purpose                                                                                                                                                              |
-| ------------------------ | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------------|----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | angleLegs                | number <sup>(readonly)</sup>                                                     | The direction angle of the character's legs. This value can be used to determine the character's movement direction.                                                 |
 | angleHead                | number <sup>(readonly)</sup>                                                     | The direction angle of the character's head.                                                                                                                         |
 | hitPoints                | number <sup>(readonly)</sup>                                                     | Current health amount.                                                                                                                                               |
@@ -152,7 +153,7 @@ Character. Has health, can move along a given path, and attack. The broadest obj
 ### Methods:
 
 | Name                                        | Type                                                                                                                                                                                                                                                                                                                                                                                                                  | Purpose                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | takeDamage                                  | (srcIndex: number, damage: number, ulti: number, attacker: [LogicCharacter](#logiccharacter)?, projectile: [LogicProjectile](#logicprojectile)?, hasIndication: boolean, hasHighlight: boolean, srcX: number, srcY: number, someData: [Data](#data)?, forceProtected: boolean, origin: [AttackOrigin](#attackorigin), forceAll: boolean, makeVisible: boolean, disallowSpawns: boolean, extraValue: number) ⇒ boolean | Inflicts a certain amount of damage on the character.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | takeHeal                                    | (srcIndex: number, damage: number, hasIndication: boolean, someData: [Data](#data)?, origin: [AttackOrigin](#attackorigin)) ⇒ boolean                                                                                                                                                                                                                                                                                 | Restores a certain amount of the character's health.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | stopMovement                                | () ⇒ ()                                                                                                                                                                                                                                                                                                                                                                                                               | Stops the character's movement.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -166,6 +167,7 @@ Character. Has health, can move along a given path, and attack. The broadest obj
 | getWalkSpeed                                | (x: number, y: number) ⇒ number                                                                                                                                                                                                                                                                                                                                                                                       | Returns the current walking speed, taking buffs into account.                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | getSummaryDamageBuff                        | () ⇒ number                                                                                                                                                                                                                                                                                                                                                                                                           | Returns the total damage buff as a percentage.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | changeCharacter                             | (data: [CharacterData](#characterdata)?) ⇒ [LogicCharacter](#logiccharacter)?                                                                                                                                                                                                                                                                                                                                         | Changes the current playable character to the specified one. Meg or Bonnie's Super mechanic.                                                                                                                                                                                                                                                                                                                                                                                           |
+| overrideSkin                                | (data: [SkinData](#skindata)?) ⇒ ()                                                                                                                                                                                                                                                                                                                                                                                   | Allows you to override skin of this character. Does not affect the player skin overall. It is recommended to call this at the same time (in the same tick) as spawning or changing the character.                                                                                                                                                                                                                                                                                      |
 | increaseMaxHitPoints                        | (value: number, powerUps: boolean) ⇒ ()                                                                                                                                                                                                                                                                                                                                                                               | Increases the character's maximum health. If the second argument equals <b>true</b>, it will also increase the number of Showdown Power Cubes by 1.                                                                                                                                                                                                                                                                                                                                    |
 | teleport                                    | (x: number, y: number, srcAreaEffect: [AreaEffectData](#areaeffectdata)?, destAreaEffect: [AreaEffectData](#areaeffectdata)?, damage: number, ultiCharge: number) ⇒ ()                                                                                                                                                                                                                                                | Teleports the character to the specified point. Effects can be specified to appear at the origin and destination points. These effects will use the specified damage amount.                                                                                                                                                                                                                                                                                                           |
 | spawnCirclingAreaEffect                     | (damageBonus: number, data: [AreaEffectData](#areaeffectdata)?, origin: [AttackOrigin](#attackorigin), applyOwnerBuffs: boolean, followOwner: boolean) ⇒ [LogicAreaEffect](#logicareaeffect)?                                                                                                                                                                                                                         | Creates a new effect on behalf of this character. Specifically, this method is intended for mechanics like Emz's Super, Buzz's Super-charging area, or the healing effect from Pam's turret. In general, it's for various long-lasting effects that are often attached to a character.                                                                                                                                                                                                 |
@@ -188,7 +190,7 @@ Character. Has health, can move along a given path, and attack. The broadest obj
 ### Fields:
 
 | Name            | Type                                          | Purpose                                                                                                                                                           |
-| --------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------------|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | data            | [SkillData](#skilldata) <sup>(readonly)</sup> | …                                                                                                                                                                 |
 | activeTicksLeft | number <sup>(readonly)</sup>                  | The number of ticks until the skill transitions from an active to an inactive state. Monotonically decreases. Equals zero if the skill is not in an active state. |
 | chargeValue     | number <sup>(readonly)</sup>                  | Current ammo. Applies only to the primary attack. One unit is equal to 1/1000 of a round.                                                                         |
@@ -196,7 +198,7 @@ Character. Has health, can move along a given path, and attack. The broadest obj
 ### Methods:
 
 | Name            | Type                   | Purpose                                                                                                                                               |
-| --------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------------|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | setUpgradeLevel | (level: number) ⇒ ()   | Sets the upgrade level for this skill. Starts at zero. Affects the damage and other parameters of its attack.                                         |
 | getMaxCharge    | () ⇒ number            | Maximum ammo value. Applies only to the primary attack. One unit is equal to 1/1000 of a round.                                                       |
 | charge          | (percent: number) ⇒ () | Increases or decreases the current ammo count. Applies only to the primary attack. The argument is expressed in 1/100 of a round and may be negative. |
@@ -210,7 +212,7 @@ A list of status effects for a specific character or projectile.
 ### Methods:
 
 | Name          | Type                                                                                                 | Purpose                                                                                                                      |
-| ------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+|---------------|------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
 | getEffect     | (data: [StatusEffectData](#statuseffectdata)?) ⇒ [StatusEffect](#statuseffect)?                      | Searches for a specific effect based on its <i>data</i>. Returns <b>nil</b> if no such effect exists.                        |
 | getEffectSpec | (data: [StatusEffectData](#statuseffectdata)?, sourceIndex: number) ⇒ [StatusEffect](#statuseffect)? | Searches for a specific effect based on its <i>data</i> and <i>sourceIndex</i>. Returns <b>nil</b> if no such effect exists. |
 
@@ -221,7 +223,7 @@ A list of status effects for a specific character or projectile.
 ### Fields:
 
 | Name        | Type                                                        | Purpose                                                                                           |
-| ----------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+|-------------|-------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
 | data        | [StatusEffectData](#statuseffectdata) <sup>(readonly)</sup> | …                                                                                                 |
 | damageBase  | number                                                      | Base periodic damage value, excluding buffs and level.                                            |
 | healingBase | number                                                      | Base periodic healing value, excluding buffs and level.                                           |
@@ -233,7 +235,7 @@ A list of status effects for a specific character or projectile.
 ### Methods:
 
 | Name     | Type                | Purpose                                                                     |
-| -------- | ------------------- | --------------------------------------------------------------------------- |
+|----------|---------------------|-----------------------------------------------------------------------------|
 | cancel   | () ⇒ ()             | Cancels the status effect.                                                  |
 | addTicks | (arg0: number) ⇒ () | Extends the duration of the status effect by the specified number of ticks. |
 | isActive | () ⇒ boolean        | Checks if the status effect is currently active.                            |
@@ -247,7 +249,7 @@ A projectile. It travels along a set trajectory and can deal damage to character
 ### Fields:
 
 | Name          | Type                                                         | Purpose                                                                                                                                                                                                                         |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------|--------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | finishState   | number <sup>(readonly)</sup>                                 | Initially set to zero. Upon completion of movement, set to a positive value: <b>1</b> — maximum distance reached, <b>2</b> — hit map boundary, <b>3</b> — hit character, <b>4</b> — hit block, <b>5</b> — destroyed externally. |
 | shotCharacter | [LogicCharacter](#logiccharacter)? <sup>(readonly)</sup>     | Initially equal to <b>nil</b>, but if a hit occurs on a character, that character will be recorded in this field.                                                                                                               |
 | origin        | [AttackOrigin](#attackorigin) <sup>(readonly)</sup>          | …                                                                                                                                                                                                                               |
@@ -259,7 +261,7 @@ A projectile. It travels along a set trajectory and can deal damage to character
 ### Methods:
 
 | Name           | Type                       | Purpose |
-| -------------- | -------------------------- | ------- |
+|----------------|----------------------------|---------|
 | setFinishState | (finishState: number) ⇒ () | …       |
 
 # LogicAreaEffect
@@ -271,7 +273,7 @@ An area with an effect. It affects characters (and certain projectiles); the mec
 ### Fields:
 
 | Name           | Type                                                     | Purpose                                                                        |
-| -------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------ |
+|----------------|----------------------------------------------------------|--------------------------------------------------------------------------------|
 | ownerCharacter | [LogicCharacter](#logiccharacter)? <sup>(readonly)</sup> | …                                                                              |
 | origin         | [AttackOrigin](#attackorigin) <sup>(readonly)</sup>      | …                                                                              |
 | damage         | number                                                   | The damage that this effect will deal to characters within its area of effect. |
@@ -280,7 +282,7 @@ An area with an effect. It affects characters (and certain projectiles); the mec
 ### Methods:
 
 | Name           | Type                                                                                                                          | Purpose                                                                                                 |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
 | setSource      | (index: number, team: number, ownerCharacter: [LogicCharacter](#logiccharacter)?, origin: [AttackOrigin](#attackorigin)) ⇒ () | …                                                                                                       |
 | isObjectInside | (object: [LogicGameObject](#logicgameobject)?) ⇒ boolean                                                                      | Checks whether a game object is within the effect's area of effect.                                     |
 | destroy        | () ⇒ ()                                                                                                                       | Immediately destroys this effect.                                                                       |
@@ -295,7 +297,7 @@ An item. Can usually be picked up or activated.
 ### Fields:
 
 | Name               | Type                                                     | Purpose                                                                            |
-| ------------------ | -------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+|--------------------|----------------------------------------------------------|------------------------------------------------------------------------------------|
 | isTriggered        | boolean <sup>(readonly)</sup>                            | …                                                                                  |
 | triggeredCharacter | [LogicCharacter](#logiccharacter)? <sup>(readonly)</sup> | …                                                                                  |
 | ownerCharacter     | [LogicCharacter](#logiccharacter)? <sup>(readonly)</sup> | …                                                                                  |
@@ -305,7 +307,7 @@ An item. Can usually be picked up or activated.
 ### Methods:
 
 | Name      | Type                                                                                                                          | Purpose                         |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+|-----------|-------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
 | setSource | (index: number, team: number, ownerCharacter: [LogicCharacter](#logiccharacter)?, origin: [AttackOrigin](#attackorigin)) ⇒ () | …                               |
 | destroy   | () ⇒ ()                                                                                                                       | Immediately destroys this item. |
 
@@ -316,7 +318,7 @@ An item. Can usually be picked up or activated.
 ### Fields:
 
 | Name     | Type                                                  | Purpose |
-| -------- | ----------------------------------------------------- | ------- |
+|----------|-------------------------------------------------------|---------|
 | data     | [AccessoryData](#accessorydata) <sup>(readonly)</sup> | …       |
 | isActive | boolean <sup>(readonly)</sup>                         | …       |
 
@@ -327,7 +329,7 @@ Battle map; contains a tile grid and allows working with it.
 ### Fields:
 
 | Name      | Type                         | Purpose                       |
-| --------- | ---------------------------- | ----------------------------- |
+|-----------|------------------------------|-------------------------------|
 | tileSizeX | number <sup>(readonly)</sup> | Map width in tiles.           |
 | tileSizeY | number <sup>(readonly)</sup> | Map height in tiles.          |
 | absSizeX  | number <sup>(readonly)</sup> | Map width in absolute units.  |
@@ -336,7 +338,7 @@ Battle map; contains a tile grid and allows working with it.
 ### Methods:
 
 | Name           | Type                                                                                                          | Purpose                                                                                                    |
-| -------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+|----------------|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
 | destructTile   | (x: number, y: number, isBasicWeapon: boolean) ⇒ ()                                                           | Destroys the block at the specified tile.                                                                  |
 | setDynamicTile | (data: [TileData](#tiledata)?, x: number, y: number, ownerCharacter: [LogicCharacter](#logiccharacter)?) ⇒ () | Sets a dynamic block at the specified tile. This block must have DynamicCode != 0.                         |
 | getTile        | (x: number, y: number) ⇒ [Tile](#tile)?                                                                       | Returns the tile by tile (cell) coordinates. Returns <b>nil</b> if the specified point is outside the map. |
@@ -348,7 +350,7 @@ A specific tile on the map.
 ### Fields:
 
 | Name         | Type                                         | Purpose                                                                                                     |
-| ------------ | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+|--------------|----------------------------------------------|-------------------------------------------------------------------------------------------------------------|
 | data         | [TileData](#tiledata) <sup>(readonly)</sup>  | Current [TileData](#tiledata) of this tile.                                                                 |
 | dataOriginal | [TileData](#tiledata)? <sup>(readonly)</sup> | Original [TileData](#tiledata) of this tile. It is loaded once and remains unchanged throughout the battle. |
 | x            | number <sup>(readonly)</sup>                 | …                                                                                                           |
@@ -357,7 +359,7 @@ A specific tile on the map.
 ### Methods:
 
 | Name            | Type         | Purpose                                                                                                         |
-| --------------- | ------------ | --------------------------------------------------------------------------------------------------------------- |
+|-----------------|--------------|-----------------------------------------------------------------------------------------------------------------|
 | isDynamic       | () ⇒ boolean | Returns <b>true</b> if this tile was set dynamically.                                                           |
 | restoreOriginal | () ⇒ ()      | Restores the tile's initial state from the start of the battle. Should only be used to restore destroyed walls. |
 
@@ -370,7 +372,7 @@ Indicates the origin of damage (healing) or the Super charge source.
 ### Constants:
 
 | Name               | Type                          | Purpose                                                                                       |
-| ------------------ | ----------------------------- | --------------------------------------------------------------------------------------------- |
+|--------------------|-------------------------------|-----------------------------------------------------------------------------------------------|
 | UNKNOWN            | [AttackOrigin](#attackorigin) | …                                                                                             |
 | WEAPON             | [AttackOrigin](#attackorigin) | …                                                                                             |
 | ULTI               | [AttackOrigin](#attackorigin) | …                                                                                             |
@@ -417,12 +419,13 @@ Is an enumeration.
 
 # Data
 
-Abstract class. Stores table data (.csv) for a specific object. For example, Wall1 from <i>tiles.csv</i> will be described by its own [TileData](#tiledata) object.
+Abstract class. Stores table data (.csv) for a specific object. For example, Wall1 from <i>tiles.csv</i> will be described by its own [TileData](#tiledata)
+object.
 
 ### Constants:
 
 | Name               | Type   | Purpose |
-| ------------------ | ------ | ------- |
+|--------------------|--------|---------|
 | TYPE_PROJECTILE    | number | …       |
 | TYPE_LOCATION      | number | …       |
 | TYPE_CHARACTER     | number | …       |
@@ -441,7 +444,7 @@ Abstract class. Stores table data (.csv) for a specific object. For example, Wal
 ### Methods:
 
 | Name        | Type                             | Purpose                                                                                                                                                                                                                                                                                      |
-| ----------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------|----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | getIndex    | () ⇒ number                      | Returns its index in the table.                                                                                                                                                                                                                                                              |
 | getType     | () ⇒ number                      | Returns the numeric type of its table. Always identical for objects within the same table.                                                                                                                                                                                                   |
 | getGlobalId | () ⇒ number                      | Returns its unique ID. Effectively calculated as: <code>(this.getType() * 1000000) + this.getIndex()</code>                                                                                                                                                                                  |
@@ -553,7 +556,7 @@ Abstract class.
 ### Methods:
 
 | Name    | Type                     | Purpose                                                                               |
-| ------- | ------------------------ | ------------------------------------------------------------------------------------- |
+|---------|--------------------------|---------------------------------------------------------------------------------------|
 | get     | (index: number) ⇒ any    | Retrieves an object from the list by its index. Indexing starts at <b>zero</b>.       |
 | add     | (element: any) ⇒ boolean | Adds an object to the list.                                                           |
 | size    | () ⇒ number              | Returns the size of the list.                                                         |
@@ -564,4 +567,3 @@ Abstract class.
 Inherits from [List](#list).
 
 A list.
-
