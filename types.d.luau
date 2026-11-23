@@ -26,7 +26,7 @@ declare extern type Server with
     --- …
     map: TileMap
     --- …
-    customInputListeners: List<InputListener>
+    customInputListeners: List<InputEventListener>
     --- Позволяет получить объект ClientInfo по индексу игрока.
     function getClientInfo(self, index: number): ClientInfo?
     --- Позволяет проверить, завершилась ли интро-анимация боя.
@@ -150,8 +150,6 @@ declare extern type LogicCharacter extends LogicGameObject with
     type: CharacterType
     --- Управляется ли персонаж ботом?
     isBot: boolean
-    --- Есть ли стан у персонажа?
-    isStunned: boolean
     --- …
     persistentSpeedBuff: number
     --- …
@@ -177,11 +175,11 @@ declare extern type LogicCharacter extends LogicGameObject with
     --- Список подписок на событие нанесения урона.
     dealingDamageListeners: List<DamageEventListener>
     --- Список подписок на событие смерти (когда здоровье опускается до нуля).
-    deathListeners: List<SourceListener>
+    deathListeners: List<SourceEventListener>
     --- Список подписок на событие использования атаки или супера.
     skillUseListeners: List<SkillEventListener>
     --- Список подписок на событие использования гиперзаряда.
-    startOverchargeListeners: List<BasicListener>
+    startOverchargeListeners: List<BasicEventListener>
     --- Наносит определенный урон игроку.
     function takeDamage(self, srcIndex: number, damage: number, ulti: number, attacker: LogicCharacter?, projectile: LogicProjectile?, hasIndication: boolean, hasHighlight: boolean, srcX: number, srcY: number, someData: Data?, forceProtected: boolean, origin: AttackOrigin, forceAll: boolean, makeVisible: boolean, disallowSpawns: boolean, extraValue: number): boolean
     --- Лечит определенное количество здоровья игрока.
@@ -230,10 +228,8 @@ declare extern type LogicCharacter extends LogicGameObject with
     function setConsumableShield(self, value: number, ticks: number): ()
     --- Выдает классический щит. Позволяет указать процент защиты (value) и длительность (ticks).
     function gainShield(self, ticks: number, value: number): ()
-    --- Накладывает классический эффект стана. Позволяет указать длительность (ticks) и подтип (isSleepy, isCrossing).
-    function setStun(self, ticks: number, skipImmunity: boolean, isSleepy: boolean, isCrossing: boolean): boolean
     --- Отталкивает персонажа от указанной точки. Сила (strength) определяет расстояние отталкивания.
-    function push(self, pushX: number, pushY: number, strength: number, canFly: boolean, a7: boolean, a8: boolean, a9: boolean, skipCCImmunity: boolean, a11: boolean, a12: boolean, a13: boolean, useFixedDistance: boolean, stunTicks: number, speedModifier: number): ()
+    function push(self, pushX: number, pushY: number, strength: number, canFly: boolean, a7: boolean, a8: boolean, a9: boolean, skipCCImmunity: boolean, a11: boolean, a12: boolean, a13: boolean, useFixedDistance: boolean, stunTicks: number, speedModifier: number, sourceIndex: number): ()
 end
 
 declare extern type Skill with
@@ -446,13 +442,13 @@ end
 declare extern type SkillEventListener with
 end
 
-declare extern type SourceListener with
+declare extern type SourceEventListener with
 end
 
-declare extern type BasicListener with
+declare extern type BasicEventListener with
 end
 
-declare extern type InputListener with
+declare extern type InputEventListener with
 end
 
 export type List<T> = Iterable<T>
@@ -613,11 +609,11 @@ declare DamageEventListener: {}
 
 declare SkillEventListener: {}
 
-declare SourceListener: {}
+declare SourceEventListener: {}
 
-declare BasicListener: {}
+declare BasicEventListener: {}
 
-declare InputListener: {}
+declare InputEventListener: {}
 
 declare Iterable: {}
 

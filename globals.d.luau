@@ -15,9 +15,9 @@ export type InputCallback = (index: number, spec0: number, spec1: number) -> ()
 
 type createCallback0 = (class: "DamageEventListener", callback: DamageEventCallback) -> DamageEventListener
 type createCallback1 = (class: "SkillEventListener", callback: SkillEventCallback) -> SkillEventListener
-type createCallback2 = (class: "SourceListener", callback: SourceCallback) -> SourceListener
-type createCallback3 = (class: "BasicListener", callback: BasicCallback) -> BasicListener
-type createCallback4 = (class: "InputListener", callback: InputCallback) -> InputListener
+type createCallback2 = (class: "SourceListener", callback: SourceCallback) -> SourceEventListener
+type createCallback3 = (class: "BasicListener", callback: BasicCallback) -> BasicEventListener
+type createCallback4 = (class: "InputListener", callback: InputCallback) -> InputEventListener
 
 export type Text = {binding: string, text: string, [any]: never}
 export type Button = {binding: string, client_input_value: number, [any]: never}
